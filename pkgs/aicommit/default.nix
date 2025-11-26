@@ -21,7 +21,7 @@ in
     patchPhase = ''
       runHook prePatch
       substituteInPlace cmd/aicommit/main.go \
-        --replace-fail 'if resp.Usage != nil {' 'if false && resp.Usage != nil {'
+        --replace 'if resp.Usage != nil {' 'if resp.Usage != nil && !strings.Contains(opts.openAIBaseURL, "generativelanguage.googleapis.com") {'
       runHook postPatch
     '';
 
